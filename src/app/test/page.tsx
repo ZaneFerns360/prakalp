@@ -2,6 +2,7 @@
 import React from "react";
 import { createCourse } from "../api/createCourse";
 import { uid } from "../api/authsx";
+import axios from "axios";
 
 async function create() {
   //test data
@@ -42,6 +43,15 @@ async function create() {
     const course = await createCourse(session, "Test Course", true, chapters);
     console.log(course);
   }
+
+  const getCourse = async () => {
+    const res = await axios.post(
+      "https://thinklabs.azurewebsites.net/api/makecourse",
+      {
+        topic: "Course Topic",
+      },
+    );
+  };
 }
 
 export default async function Page() {
