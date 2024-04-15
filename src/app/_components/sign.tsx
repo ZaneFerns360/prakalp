@@ -49,7 +49,7 @@ const Navbar = async () => {
               <>
                 <li>
                   <a
-                    href="/organization/dashboard"
+                    href="/dashboard"
                     className="block rounded px-1 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 "
                   >
                     <LayoutDashboard />
@@ -87,7 +87,7 @@ const Navbar = async () => {
             <ul className="mt-4 flex flex-col rounded-lg p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse">
               <li>
                 <Link
-                  href="/organization/dashboard"
+                  href="/dashboard"
                   className="my-2 block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent"
                 >
                   Dashboard

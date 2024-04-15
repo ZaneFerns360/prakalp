@@ -19,9 +19,9 @@ const Hero = () => {
             educational content to create an immersive experience that sparks
             curiosity and fosters a love for learning
           </p>
-          <button className="px-5 py-2 rounded-md text-black border my-7 md:w-[30%] border-black hover:border-b-4 hover:bg-white hover:font-semibold hover:border-l-4 hover:rounded-lg hover:translate-x-1 hover:-translate-y-1">
+          <a href="/dashboard" className="px-5 py-2 rounded-md text-black border my-7 md:w-[30%] border-black hover:border-b-4 hover:bg-white hover:font-semibold hover:border-l-4 hover:rounded-lg hover:translate-x-1 hover:-translate-y-1">
             Dashboard
-          </button>
+          </a>
         </div>
 
         <Image
