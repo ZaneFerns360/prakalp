@@ -2,7 +2,7 @@
 import React from "react";
 import { createCourse } from "../api/createCourse";
 import { uid } from "../api/authsx";
-//to create a course, use this layout
+//to create a course, use this layout - Once Joy gets data store this
 async function create() {
   //test data
   const chapters = [

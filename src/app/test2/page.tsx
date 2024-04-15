@@ -3,7 +3,7 @@ import React from "react";
 import { createCourse } from "../api/createCourse";
 import { uid } from "../api/authsx";
 import { getCourses } from "../api/getAllCourses";
-//to get all courses and all chapters and all topics and everything, I was too lazy to map everything, refer test4
+//to get all courses and all chapters and all topics and everything, I was too lazy to map everything, refer test4 - Gallery
 async function findData() {
   const session = await uid();
   if (session !== null) {
