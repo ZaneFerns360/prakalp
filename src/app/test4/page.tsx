@@ -3,7 +3,7 @@ import React from "react";
 import { uid } from "../api/authsx";
 import { getOneCourse } from "../api/getOneCourse";
 import { type Course, Chapter, Topic } from "@prisma/client";
-//to get all the data associated with a whole single Course using course id
+//to get all the data associated with a whole single Course using course id - Gallery Product
 async function getData() {
   //test data
   const session = await uid();
