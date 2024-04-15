@@ -20,6 +20,7 @@
     "@remixicon/react": "^4.2.0",
     "@t3-oss/env-nextjs": "^0.9.2",
     "@tremor/react": "^3.16.0",
+    "axios": "^1.6.8",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.28",
     "lucide-react": "^0.368.0",
