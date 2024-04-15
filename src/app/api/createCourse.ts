@@ -9,7 +9,12 @@ export async function createCourse(
   isPublic: boolean,
   chapters: {
     name: string;
-    topics: { title: string; link: string; search_query: string }[];
+    topics: {
+      title: string;
+      link: string;
+      search_query: string;
+      knowledge_level: number;
+    }[];
   }[],
 ): Promise<Course | null> {
   const user: User | null = await db.user.findUnique({
@@ -34,6 +39,7 @@ export async function createCourse(
                 title: topic.title,
                 link: topic.link,
                 search_query: topic.search_query,
+                knowledge_level: topic.knowledge_level,
               })),
             },
           })),
