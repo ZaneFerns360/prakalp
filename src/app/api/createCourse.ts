@@ -7,7 +7,10 @@ export async function createCourse(
   userId: string,
   title: string,
   isPublic: boolean,
-  chapters: { name: string; topics: { title: string; link: string }[] }[],
+  chapters: {
+    name: string;
+    topics: { title: string; link: string; search_query: string }[];
+  }[],
 ): Promise<Course | null> {
   const user: User | null = await db.user.findUnique({
     where: { id: userId },
@@ -27,7 +30,11 @@ export async function createCourse(
           create: chapters.map((chapter) => ({
             name: chapter.name,
             topics: {
-              create: chapter.topics,
+              create: chapter.topics.map((topic) => ({
+                title: topic.title,
+                link: topic.link,
+                search_query: topic.search_query,
+              })),
             },
           })),
         },
