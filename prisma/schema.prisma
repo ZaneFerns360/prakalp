@@ -78,10 +78,11 @@ model Chapter {
 }
 
 model Topic {
-  id           String  @id @default(cuid())
-  title        String
-  link         String
-  chapterId    String
-  search_query String
-  chapter      Chapter @relation(fields: [chapterId], references: [id])
+  id              String  @id @default(cuid())
+  title           String
+  link            String
+  chapterId       String
+  search_query    String
+  knowledge_level Int
+  chapter         Chapter @relation(fields: [chapterId], references: [id])
 }

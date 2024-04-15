@@ -2,19 +2,42 @@
 import React from "react";
 import { createCourse } from "../api/createCourse";
 import { uid } from "../api/authsx";
-import { getCourses } from "../api/getCourses";
-
-async function create() {
-  //test data
+import { getCourses } from "../api/getAllCourses";
+//to get all courses and all chapters and all topics and everything, I was too lazy to map everything, refer test4
+async function findData() {
   const session = await uid();
   if (session !== null) {
     const course = await getCourses(session);
-    console.log(course);
+    return course;
   }
+  return null;
 }
 
 export default async function Page() {
-  const data = await create();
+  const courses = await findData();
 
-  return <main></main>;
+  if (courses === null) {
+    return <main>No courses found</main>;
+  }
+
+  return (
+    <main>
+      {courses.map((course) => (
+        <div key={course.id}>
+          <h2>{course.title}</h2>
+          {course.chapters.map((chapter) => (
+            <div key={chapter.id}>
+              <h3>{chapter.name}</h3>
+              {chapter.topics.map((topic) => (
+                <div key={topic.id}>
+                  <h4>{topic.title}</h4>
+                  <p>{topic.link}</p>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      ))}
+    </main>
+  );
 }

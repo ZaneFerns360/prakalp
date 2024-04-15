@@ -1,6 +1,5 @@
 "use server";
 import { db } from "~/server/db";
-// import { type Course, type Chapter, type Topic, User } from "@prisma/client";
 
 type Topic = {
   id: string;
@@ -26,11 +25,11 @@ type CourseDetails = {
   chapters: Chapter[];
 };
 
-export async function getOneCourse(
-  courseId: string,
-): Promise<CourseDetails | null> {
-  const course = await db.course.findUnique({
-    where: { id: courseId },
+export async function getCourses(
+  userId: string,
+): Promise<CourseDetails[] | null> {
+  const courses = await db.course.findMany({
+    where: { userId: userId },
     include: {
       chapters: {
         include: {
@@ -39,5 +38,5 @@ export async function getOneCourse(
       },
     },
   });
-  return course;
+  return courses;
 }
