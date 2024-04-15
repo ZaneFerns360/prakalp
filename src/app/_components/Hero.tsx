@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import { HeroScrollDemo } from "./HeroScrollDemo";
-import { BentoGridSecondDemo } from "./BentoGridSecondDemo";
 import Footer from "./Footer";
 
 const Hero = () => {
@@ -54,15 +53,14 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="w-[80%] mx-auto py-10 text-black">
+      {/* <div className="w-[80%] mx-auto py-10 text-black">
         <h1 className="md:text-4xl text-3xl font-bold mb-3 ">
           Rethink the way you Learn with the fun approach
         </h1>
         <p className="">
           Learning is never monotonous if you have the right motivation
         </p>
-        <BentoGridSecondDemo />
-      </div>
+      </div> */}
 
       <Footer/>
     </div>

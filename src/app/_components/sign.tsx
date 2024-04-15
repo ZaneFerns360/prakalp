@@ -55,15 +55,6 @@ const Navbar = async () => {
                     <LayoutDashboard />
                   </a>
                 </li>
-
-                <li>
-                  <a
-                    href="/organization/dashboard"
-                    className="block rounded px-1 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 "
-                  >
-                    <Gamepad2 />
-                  </a>
-                </li>
                 <div className="">
                   <Link
                     href={
@@ -100,15 +91,6 @@ const Navbar = async () => {
                   className="my-2 block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent"
                 >
                   Dashboard
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/organization/dashboard"
-                  className="my-2 block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent"
-                >
-                  <Gamepad2 />
                 </Link>
               </li>
 
