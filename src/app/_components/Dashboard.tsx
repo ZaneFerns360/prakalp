@@ -129,15 +129,18 @@ const Dashboard = () => {
             </Card>
             <div className="grid grid-cols-2 gap-4">
               <Card className="flex w-full flex-col items-center justify-center">
-                <div className="flex w-full justify-between">
-                  <h1 className="text-lg font-bold md:text-xl">Gallery</h1>
-                  <GalleryVerticalEnd size={20} />
-                </div>
-                <p className="md:text-md text-sm">
-                  Check out all the courses you generated
-                </p>
+                <a href="/course-gallery">
+                  <div className="flex w-full justify-between">
+                    <h1 className="text-lg font-bold md:text-xl">Gallery</h1>
+                    <GalleryVerticalEnd size={20} />
+                  </div>
+                  <p className="md:text-md text-sm">
+                    Check out all the courses you generated
+                  </p>
+                </a>
               </Card>
               <Card className="flex w-full flex-col items-center justify-center">
+                <a href="/course-explore">
                 <div className="flex w-full justify-between">
                   <h1 className="text-lg font-bold md:text-xl">Explore</h1>
                   <Search size={20} />
@@ -145,6 +148,7 @@ const Dashboard = () => {
                 <p className="md:text-md text-sm">
                   Check out all the courses you generated
                 </p>
+                </a>
               </Card>
             </div>
           </div>
@@ -203,7 +207,7 @@ const Dashboard = () => {
                     </ProgressCircle>
                     <div>
                       <p className="dark:text-dark-tremor-content-strong text-tremor-default font-medium text-tremor-content-strong">
-                      Harappan Civilization
+                        Harappan Civilization
                       </p>
                       <p className="dark:text-dark-tremor-content text-tremor-default text-tremor-content">
                         When was the Harappan Civilization ?
@@ -218,51 +222,52 @@ const Dashboard = () => {
           {/* Quiz Gen  */}
           <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-4">
             <Card className="flex w-full flex-col items-center justify-center">
-            <a href="/quiz-history">
-              <div className="flex w-full justify-between">
-                <h1 className="text-lg font-bold md:text-xl">Quiz History</h1>
-                <History size={20} />
-              </div>
-              <p className="md:text-md text-sm">
-                Check out all the quizzes you attempted
-              </p>
+              <a href="/quiz-history">
+                <div className="flex w-full justify-between">
+                  <h1 className="text-lg font-bold md:text-xl">Quiz History</h1>
+                  <History size={20} />
+                </div>
+                <p className="md:text-md text-sm">
+                  Check out all the quizzes you attempted
+                </p>
               </a>
             </Card>
             <Card className="md:col-span-3">
               <a href="/create-quiz">
-              <div className="flex justify-between gap-3">
-                <Image
-                  src="/Eddie/eddieNGamer.png"
-                  width={80}
-                  height={80}
-                  className="my-auto"
-                  alt="Eddie"
-                />
+                <div className="flex justify-between gap-3">
+                  <Image
+                    src="/Eddie/eddieNGamer.png"
+                    width={80}
+                    height={80}
+                    className="my-auto"
+                    alt="Eddie"
+                  />
 
-                <div className="leading-1.5 hidden w-full max-w-[360px] flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-gray-100 p-4 md:block">
-                  <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                    <span className="text-sm font-semibold text-gray-900 ">
-                      Eddie, Your Buddy
-                    </span>
-                    <span className="text-sm font-normal text-gray-500">
-                      Now
-                    </span>
+                  <div className="leading-1.5 hidden w-full max-w-[360px] flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-gray-100 p-4 md:block">
+                    <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                      <span className="text-sm font-semibold text-gray-900 ">
+                        Eddie, Your Buddy
+                      </span>
+                      <span className="text-sm font-normal text-gray-500">
+                        Now
+                      </span>
+                    </div>
+                    <p className="py-2.5 text-sm font-normal text-gray-900 ">
+                      Practice makes you Perfect, Come On!! Let&apos;s learn
+                      together <span className="font-bold">"Ribbit"!</span>
+                    </p>
                   </div>
-                  <p className="py-2.5 text-sm font-normal text-gray-900 ">
-                    Practice makes you Perfect, Come On!! Let&apos;s learn
-                    together <span className="font-bold">"Ribbit"!</span>
-                  </p>
-                </div>
 
-                <div className="my-auto md:mr-10">
-                  <h1 className="text-lg font-bold md:text-xl">
-                    Quiz Generator
-                  </h1>
-                  <p className="md:text-md text-sm">
-                    Test your knowledge, practice well and revise by using the Quiz generator to make a quiz with single word prompts
-                  </p>
+                  <div className="my-auto md:mr-10">
+                    <h1 className="text-lg font-bold md:text-xl">
+                      Quiz Generator
+                    </h1>
+                    <p className="md:text-md text-sm">
+                      Test your knowledge, practice well and revise by using the
+                      Quiz generator to make a quiz with single word prompts
+                    </p>
+                  </div>
                 </div>
-              </div>
               </a>
             </Card>
           </div>
