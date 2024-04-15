@@ -52,6 +52,15 @@ async function create() {
     );
   };
 
+  const getQna = async () => {
+    const res = await axios.post(
+      "https://thinklabs.azurewebsites.net/api/makeqna",
+      {
+        topics: "just topics as string",
+      },
+    );
+  };
+
   const chapters = await getCourse();
   const session = await uid();
   if (session !== null) {
