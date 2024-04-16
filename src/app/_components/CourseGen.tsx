@@ -20,13 +20,13 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
   const [qtopic, setQtopic] = useState();
   const [changeStatus, setChangeStatus] = useState(0)
 
-  const ecd = (topic) => {
+  const ecd = (topic : any) => {
     const utf8String = encodeURIComponent(topic);
     const base64String = btoa(utf8String);
     return base64String;
   };
 
-  const move = (e) => {
+  const move = (e: any) => {
     e.preventDefault();
     router.push(`/quiz/${ecd(qtopic)}`);
   };

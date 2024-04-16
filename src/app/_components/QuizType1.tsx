@@ -11,7 +11,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import QuizStats from "./QuizStats";
 
-const QuizType1 = ({ params }: { params: { q } }) => {
+const QuizType1 = ({ params }: { params: { q: any } }) => {
   const [qtopic, setQtopic] = useState();
   const [qNo, setQNo] = useState(0);
   const [done, setDone] = useState(false);

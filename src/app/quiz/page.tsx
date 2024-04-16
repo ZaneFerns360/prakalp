@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <QuizType1 params={router.get("q")} />
+      <QuizType1 params={{ q: router.get("q") || "default value"}} />
     </>
   );
 }

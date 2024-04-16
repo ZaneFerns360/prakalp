@@ -10,7 +10,7 @@ import QuizType1 from "./QuizType1";
 
 const QuizCreation = () => {
   const router = useRouter();
-  const [topic, setTopic] = useState();
+  const [topic, setTopic] = useState<string | undefined>(undefined);
   const [qna, setQna] = useState();
 
   const getCourse = async () => {
