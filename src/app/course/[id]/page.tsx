@@ -2,11 +2,11 @@ import React from "react";
 import Navbar from "../../_components/sign";
 import CourseGen from "../../_components/CourseGen";
 
-export default function page() {
+export default function page({ id }) {
   return (
     <div>
       <Navbar />
-      <CourseGen />
+      <CourseGen id={id} />
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import { ChevronLeft, ChevronRight, MonitorPlay } from "lucide-react";
 import React from "react";
 
-const CourseGen = () => {
+const CourseGen = ({ id }) => {
+  console.log(id);
   return (
     <div>
       <button

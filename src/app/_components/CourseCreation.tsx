@@ -4,6 +4,7 @@ import { uid } from "../api/authsx";
 import { createCourse } from "../api/createCourse";
 import Image from "next/image";
 import { Card, Divider, TextInput } from "@tremor/react";
+import { useRouter } from "next/navigation";
 
 type Subtopic = {
   name: string;
@@ -17,11 +18,13 @@ type Chapter = {
 };
 
 type CourseData = {
+  id: string;
   chapters: Chapter[];
 };
 
 const CourseCreation = () => {
   const [sessionValue, setSessionValue] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -56,7 +59,10 @@ const CourseCreation = () => {
         true,
         data.chapters,
       );
-      console.log(result);
+
+      if (result) {
+        router.push(`/course/${result.id}`);
+      }
     }
   };
 
