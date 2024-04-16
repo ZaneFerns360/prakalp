@@ -11,7 +11,7 @@ export function HeroScrollDemo() {
             <h1 className="md:text-4xl text-lg md:font-bold text-white">
               Welcome to the future of <br />
               <span className="text-4xl lg:text-[7rem] md:text-[5rem] font-bold mt-5 leading-none">
-                Fun Education
+                Smart Education
               </span>
             </h1>
           </>
