@@ -51,6 +51,8 @@ async function create() {
         topic: "Course Topic",
       },
     );
+
+    return(res.data)
   };
 
   // Quiz Generator
