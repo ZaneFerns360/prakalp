@@ -89,9 +89,10 @@ model Topic {
 }
 
 model Quiz {
-  id     String @id @default(cuid())
+  id     String   @id @default(cuid())
   name   String
   score  Int
   userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date   DateTime
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
