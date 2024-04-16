@@ -32,13 +32,6 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
       const res = await getOneCourse(params.id);
       setCourseData(res);
       setCurrData(res?.chapters[0]?.topics[0]);
-      console.log(res);
-      let tqtopic = res?.chapters.map((chap) => {
-        return chap.name;
-      });
-      console.log(tqtopic);
-      tqtopic = tqtopic.join();
-      setQtopic(tqtopic);
     };
 
     getData();
