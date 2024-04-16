@@ -17,7 +17,7 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
   const [qtopic, setQtopic] = useState();
 
   const ecd = (topic) => {
-    const utf8String = encodeURIComponent(topic)
+    const utf8String = encodeURIComponent(topic);
     const base64String = btoa(utf8String);
     return base64String;
   };
@@ -32,13 +32,6 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
       const res = await getOneCourse(params.id);
       setCourseData(res);
       setCurrData(res?.chapters[0]?.topics[0]);
-      console.log(res)
-      let tqtopic = res?.chapters.map((chap)=>{
-        return chap.name
-      })
-      console.log(tqtopic)
-      tqtopic = tqtopic.join()
-      setQtopic(tqtopic)
     };
 
     getData();
@@ -159,12 +152,24 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
                   )}
                 </p>
                 <div className="my-5">
-                {currData && <><h1 className="my-3 text-2xl font-bold ">{currData.title}</h1>
-                <p className="mb-5">Take a test on {currData.title} and check your recall Strength, Memory and Retention of information </p>
-                  <div onClick={move} className="flex w-full rounded-md border border-black px-5 py-2 text-black hover:-translate-y-1 hover:translate-x-1 hover:rounded-lg hover:border-b-4 hover:border-l-4 hover:bg-white hover:font-semibold ">
-                    <ScrollText />
-                    Test Yourself
-                  </div></>}
+                  {currData && (
+                    <>
+                      <h1 className="my-3 text-2xl font-bold ">
+                        {currData.title}
+                      </h1>
+                      <p className="mb-5">
+                        Take a test on {currData.title} and check your recall
+                        Strength, Memory and Retention of information{" "}
+                      </p>
+                      <div
+                        onClick={move}
+                        className="flex w-full rounded-md border border-black px-5 py-2 text-black hover:-translate-y-1 hover:translate-x-1 hover:rounded-lg hover:border-b-4 hover:border-l-4 hover:bg-white hover:font-semibold "
+                      >
+                        <ScrollText />
+                        Test Yourself
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

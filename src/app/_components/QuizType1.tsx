@@ -1,8 +1,13 @@
+"use client";
 import { Divider } from "@tremor/react";
 import { ChevronLeft, ChevronRight, Presentation, Timer } from "lucide-react";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const QuizType1 = () => {
+const QuizType1 = ({ params }: { params: { q: string } }) => {
+  const [qtopic, setQtopic] = useState();
+  const [score, setScore] = useState(0);
+
   return (
     <div className="mx-auto mt-20 w-[80%] ">
       <div className="flex justify-between">
