@@ -7,8 +7,8 @@ export default function page() {
   return (
     <div>
       <Navbar />
-      {/* <CourseCreation /> */}
-      <Form/>
+      <CourseCreation />
+      {/* <Form/> */}
     </div>
   );
 }
