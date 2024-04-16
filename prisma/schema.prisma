@@ -47,6 +47,8 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  age           Int?
+  class         String?
   accounts      Account[]
   sessions      Session[]
   courses       Course[]
