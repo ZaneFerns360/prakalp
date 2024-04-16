@@ -1,3 +1,4 @@
+"use server";
 import {
   ArrowRight,
   Link,
@@ -7,11 +8,30 @@ import {
   Sparkles,
 } from "lucide-react";
 import React from "react";
+import Form from "./Form";
 
-const CourseGallery = () => {
-  const data = [{}];
+import { uid } from "../api/authsx";
+import { getCourses } from "../api/getAllCourses";
+
+async function findData() {
+  const session = await uid();
+  if (session !== null) {
+    const course = await getCourses(session);
+    return course;
+  }
+  return null;
+}
+
+export default async function Page() {
+  const courses = await findData();
+  console.log(courses);
+
+  if (courses === null) {
+    return <main>No courses found</main>;
+  }
   return (
     <div>
+      <Form />
       <section className="bg-white bg-[url('/Hero/bg.jpeg')] dark:bg-gray-900">
         <div className="relative z-10 mx-auto max-w-screen-xl px-4 py-8 text-center lg:py-16">
           <h1 className="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
@@ -398,6 +418,4 @@ const CourseGallery = () => {
       </div>
     </div>
   );
-};
-
-export default CourseGallery;
+}
