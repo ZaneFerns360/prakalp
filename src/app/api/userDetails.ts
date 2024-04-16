@@ -1,28 +1,45 @@
 "use server";
 import { getServerAuthSession } from "~/server/auth";
-import { uid } from "./authsx";
 import { db } from "~/server/db";
+import { User } from "@prisma/client";
 
 type UserDetails = {
   id: string;
   name: string | null;
+  age: number | null;
+  userClass: string | null;
 };
 
 export async function getUserDetails(): Promise<UserDetails | null> {
-  // Fetch the user from the session
-  const session = await getServerAuthSession();
+  try {
+    // Fetch the user from the session
+    const session = await getServerAuthSession();
 
-  // Check if session is not null
-  if (session) {
-    // Fetch the user's details from the database
-    const usexr = await db.user.findUnique({
-      where: { id: session.user.id },
-      select: { id: true, name: true },
-    });
+    // Check if session is not null
+    if (session) {
+      // Fetch the user's details from the database
+      const user = await db.user.findUnique({
+        where: { id: session.user.id },
+        select: { id: true, name: true, age: true, class: true },
+      });
 
-    return usexr;
-  } else {
-    // Handle the case where session is null
+      if (user) {
+        return {
+          id: user.id,
+          name: user.name,
+          age: user.age ?? null,
+          userClass: user.class ?? null,
+        };
+      } else {
+        console.error("User not found.");
+        return null;
+      }
+    } else {
+      console.error("Session not found.");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching user details:", error);
     return null;
   }
 }

@@ -10,13 +10,15 @@ import {
   SparkAreaChart,
   Tracker,
 } from "@tremor/react";
-import { GalleryVerticalEnd, History, Search } from "lucide-react";
+import { GalleryVerticalEnd, History, Pencil, Search } from "lucide-react";
 import { getUserDetails } from "../api/userDetails";
 import { useEffect, useState } from "react";
 const Dashboard = () => {
   type UserDetails = {
     id: string;
     name: string | null;
+    age: number | null;
+    userClass: string | null;
   };
 
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
@@ -92,10 +94,16 @@ const Dashboard = () => {
     <div>
       <div className="bg-opacity-40 bg-[url(/Hero/bg.jpeg)]">
         <main className="mx-auto max-w-7xl p-8 pt-20">
-          <div className="flex items-center">
+          <div className="flex items-center justify-between">
             <h2 className="mr-2 text-3xl font-bold tracking-tight text-white">
               Dashboard
             </h2>
+            <a
+              href="/edit-details"
+              className="rounded-md bg-white p-2 text-black"
+            >
+              <Pencil />
+            </a>
           </div>
 
           <div className="my-5">
@@ -128,8 +136,12 @@ const Dashboard = () => {
               <div className="inline-flex items-center text-base font-semibold text-gray-900">
                 <div>
                   {/* Use the split values inside JSX */}
-                  <div>Standard : 6th </div>
-                  <div className="text-xs font-light">Age : 10</div>
+                  <div>
+                    <h1>Class : {userDetails?.userClass ?? "Class not set"}</h1>
+                  </div>
+                  <div className="text-xs font-light">
+                    <h1> Age : {userDetails?.age ?? "Details not set"}</h1>
+                  </div>
                 </div>
               </div>
             </Card>
