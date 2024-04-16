@@ -9,11 +9,10 @@ export async function createCourse(
   isPublic: boolean,
   chapters: {
     name: string;
-    topics: {
-      title: string;
-      link: string;
+    subtopics: {
+      name: string;
       search_query: string;
-      knowledge_level: number;
+      link: string;
     }[];
   }[],
 ): Promise<Course | null> {
@@ -35,11 +34,11 @@ export async function createCourse(
           create: chapters.map((chapter) => ({
             name: chapter.name,
             topics: {
-              create: chapter.topics.map((topic) => ({
-                title: topic.title,
-                link: topic.link,
-                search_query: topic.search_query,
-                knowledge_level: topic.knowledge_level,
+              create: chapter.subtopics.map((subtopic) => ({
+                title: subtopic.name,
+                link: subtopic.link,
+                search_query: subtopic.search_query,
+                knowledge_level: 0,
               })),
             },
           })),
