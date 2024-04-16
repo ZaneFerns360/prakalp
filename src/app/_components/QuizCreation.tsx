@@ -20,7 +20,6 @@ const QuizCreation = () => {
         topics: topic,
       },
     );
-    console.log(res.data);
 
     setQna(res.data);
   };

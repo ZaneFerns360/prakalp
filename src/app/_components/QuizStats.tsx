@@ -6,7 +6,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import React from "react";
 
-const QuizStats = () => {
+const QuizStats: React.FC<{ params: { score: number } }> = ({ params }) => {
+
+  const score = params.score;
   let [isOpen, setIsOpen] = useState(true);
 
   function closeModal() {
@@ -55,7 +57,7 @@ const QuizStats = () => {
                       <div className="flex justify-between">
                         <div className=" text-xl font-bold">Final Score</div>
                         <div className="flex gap-3">
-                          5 / 10
+                          {score }/ 6
                           <Award />
                         </div>
                       </div>
@@ -64,14 +66,17 @@ const QuizStats = () => {
                     <Card className="mt-4">
                         <div className=" text-xl font-bold">Grade</div>
                         <div className="flex justify-between">
-                          <h3 className="my-auto">Pass</h3>
+                          {
+                            score <= 3 ?
+                          <h3 className="my-auto">Fail</h3> : <h3 className="my-auto">Pass</h3>
+                          }
                           <Trophy />
                         </div>
                       </Card>
                       <Card className="mt-4">
                         <div className=" text-xl font-bold">Accuracy</div>
                         <div className="flex justify-between">
-                          <h3>50%</h3>
+                          <h3>{((score/6) * 100).toFixed(2) }%</h3>
                           <Target />
                         </div>
                       </Card>

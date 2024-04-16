@@ -3,11 +3,14 @@ import {
   ChevronLeft,
   ChevronRight,
   MonitorPlay,
+  RotateCw,
   ScrollText,
 } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { getOneCourse } from "../api/getOneCourse";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { changeLink } from "../api/changeLink";
 
 const CourseGen = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
@@ -15,6 +18,7 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
   const [courseData, setCourseData] = useState();
   const [currData, setCurrData] = useState();
   const [qtopic, setQtopic] = useState();
+  const [changeStatus, setChangeStatus] = useState(0)
 
   const ecd = (topic) => {
     const utf8String = encodeURIComponent(topic);
@@ -35,7 +39,34 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
     };
 
     getData();
-  }, []);
+  }, [changeStatus]);
+
+  const newLink = async () => {
+    // const res = await axios.post(
+    //   "https://thinklabs.azurewebsites.net/api/getnewvideo",
+    //   {
+    //     q: currData.search_query,
+    //     id: currData.link,
+    //   },
+    // );
+
+    console.log(currData.search_query, currData.link)
+
+    const res = await axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyAjgYmQJXz2VQUUp4sL8slYm321d3GUTGI&q=${currData.search_query}&videoDuration=medium&videoEmbeddable=true&type=video&maxResults=5`)
+    const newLs = res.data
+
+    newLs.items.forEach(element => {
+      if(element.id.videoId != currData.link){
+        changeLink(currData.id, element.id.videoId).then((e)=>{
+          setChangeStatus(changeStatus+1)
+        })
+        return
+      }
+    });
+
+    
+
+  }
 
   const changeStat = (index: number, data) => {
     setCourseStat(index);
@@ -163,10 +194,21 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
                       </p>
                       <div
                         onClick={move}
-                        className="flex w-full rounded-md border border-black px-5 py-2 text-black hover:-translate-y-1 hover:translate-x-1 hover:rounded-lg hover:border-b-4 hover:border-l-4 hover:bg-white hover:font-semibold "
+                        className="flex gap-3 w-full rounded-md border border-black px-5 py-2 text-black hover:-translate-y-1 hover:translate-x-1 hover:rounded-lg hover:border-b-4 hover:border-l-4 hover:bg-white hover:font-semibold "
                       >
                         <ScrollText />
                         Test Yourself
+                      </div>
+
+                      <p className="mt-10 mb-3">
+                        Didn&apos;t like the video, Want us to regenerate the video
+                      </p>
+                      <div
+                        onClick={newLink}
+                        className="flex gap-3 w-full rounded-md border border-black px-5 py-2 text-black hover:-translate-y-1 hover:translate-x-1 hover:rounded-lg hover:border-b-4 hover:border-l-4 hover:bg-white hover:font-semibold "
+                      >
+                        <RotateCw />
+                        Regenerate Video
                       </div>
                     </>
                   )}

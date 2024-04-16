@@ -3,7 +3,7 @@ import React, { useState, type FormEvent, useEffect } from "react";
 import { uid } from "../api/authsx";
 import { createCourse } from "../api/createCourse";
 import Image from "next/image";
-import { Card, Divider, TextInput } from "@tremor/react";
+import { Card, Divider, Select, SelectItem, TextInput } from "@tremor/react";
 import { useRouter } from "next/navigation";
 
 type Subtopic = {
@@ -101,6 +101,22 @@ const CourseCreation = () => {
                       className="mt-2"
                       required
                     />
+                  </div>
+                  <div className=" mb-4">
+                    <label
+                      htmlFor="first-name"
+                      className="mb-2 dark:text-dark-tremor-content-strong text-tremor-default font-medium text-tremor-content-strong"
+                    >
+                      How Familiar are you with this Topic
+                      <span className="text-red-500">*</span>
+                    </label>
+                    <Select className="mt-2" defaultValue="1">
+                      <SelectItem value="1">None</SelectItem>
+                      <SelectItem value="2">Basic</SelectItem>
+                      <SelectItem value="3">Competent</SelectItem>
+                      <SelectItem value="4">Proficient</SelectItem>
+                      <SelectItem value="5">Master</SelectItem>
+                    </Select>
                   </div>
                   <button
                     type="submit"
