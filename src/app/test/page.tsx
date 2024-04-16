@@ -50,6 +50,8 @@ async function create() {
         topic: "Course Topic",
       },
     );
+
+    return(res.data)
   };
 
   const chapters = await getCourse();

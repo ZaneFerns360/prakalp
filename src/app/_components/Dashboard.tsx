@@ -109,6 +109,7 @@ const Dashboard = () => {
           {/* Course Gen  */}
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <Card>
+              <a href="/create-course">
               <div className="flex justify-between gap-3 md:gap-10">
                 <div className="my-auto">
                   <h1 className="text-lg font-bold md:text-xl">
@@ -126,6 +127,7 @@ const Dashboard = () => {
                   alt="Eddie"
                 />
               </div>
+              </a>
             </Card>
             <div className="grid grid-cols-2 gap-4">
               <Card className="flex w-full flex-col items-center justify-center">
