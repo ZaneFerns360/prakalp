@@ -10,6 +10,7 @@ import {
 import React from "react";
 import { uid } from "../api/authsx";
 import { getRandomCourses } from "../api/recommendation";
+import { Badge } from "@tremor/react";
 
 async function findData() {
   const session = await uid();
@@ -85,47 +86,50 @@ export default async function Page() {
         </div>
 
         <h2 className="pb-1 text-lg font-semibold text-gray-500">Products</h2>
-
-        {courses.map((course) => (
-          <div
-            key={course.id}
-            className="group relative w-full max-w-sm rounded-lg bg-white shadow"
-          >
-            <h2>{course.title}</h2>
-            {course.chapters.map((chapter) => (
-              <div key={chapter.id}>
-                <h3>{chapter.name}</h3>
-                {chapter.topics.map((topic) => (
-                  <div key={topic.id}>
-                    <h4>{topic.title}</h4>
-                    <p>{topic.link}</p>
+        <div className="grid gap-3 md:grid-cols-3">
+          {courses.map((course) => (
+            <div
+              key={course.id}
+              className="group m-2 pb-6 w-full max-w-sm rounded-lg bg-white shadow"
+            >
+              <a href={`/course/${course.id}`}>
+                <h3 className="m-3 flex flex-col text-xl font-semibold tracking-tight text-gray-900">
+                  {course.title}
+                </h3>
+                <div>
+                  <iframe
+                    title="YouTube video player"
+                    src={`https://www.youtube.com/embed/${course?.chapters[0]?.topics[0]?.link}`}
+                    className="mb-3 h-full w-full rounded-lg p-1 group-hover:opacity-40"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                {course.chapters.map((chapter) => (
+                  <div className="my-1" key={chapter.id}>
+                    <div className="bottom-1 w-full">
+                      <div className="w-full px-5">
+                        <div className="">
+                          <Badge key={chapter.id} size="md" className="mx-1">
+                            {chapter.name}
+                          </Badge>
+                        </div>
+                        {/* {course.chapters.map((chapter) => {
+                      return (
+                        <Badge key={chapter.id} size="md" className="mx-1">
+                          {chapter.name}
+                        </Badge>
+                      );
+                    })} */}
+                      </div>
+                    </div>
                   </div>
                 ))}
-              </div>
-            ))}
-            <div>
-              <embed className="h-full w-full rounded-lg p-1 group-hover:opacity-40" />
+              </a>
             </div>
-            <span className="absolute right-1 top-1 rounded-l-lg rounded-t-none bg-yellow-500 p-2 px-4 text-sm text-white"></span>
-            <div className="bottom-1 w-full">
-              <div className="w-full px-5">
-                <div>
-                  <h5 className="flex flex-col text-lg font-semibold tracking-tight text-gray-900 group-hover:text-white">
-                    Hello
-                  </h5>
-                </div>
-                <div className="mb-5 mt-1 flex items-center justify-between">
-                  <h5 className="flex flex-col text-lg font-semibold tracking-tight text-gray-900">
-                    Hello
-                  </h5>
-                  <Link className="rounded-full bg-yellow-500 p-3">
-                    <ArrowRight />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
