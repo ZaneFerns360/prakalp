@@ -4,6 +4,7 @@ import { uid } from "../api/authsx";
 import { createCourse } from "../api/createCourse";
 import Image from "next/image";
 import { Card, Divider, TextInput } from "@tremor/react";
+import { useRouter } from "next/navigation";
 
 type Subtopic = {
   name: string;
@@ -17,11 +18,13 @@ type Chapter = {
 };
 
 type CourseData = {
+  id: string;
   chapters: Chapter[];
 };
 
 const CourseCreation = () => {
   const [sessionValue, setSessionValue] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -56,7 +59,10 @@ const CourseCreation = () => {
         true,
         data.chapters,
       );
-      console.log(result);
+
+      if (result) {
+        router.push(`/course/${result.id}`);
+      }
     }
   };
 
@@ -96,7 +102,10 @@ const CourseCreation = () => {
                       required
                     />
                   </div>
-                  <button type="submit" className="my-7 rounded-md border border-black px-5 py-2 text-black hover:-translate-y-1 hover:translate-x-1 hover:rounded-lg hover:border-b-4 hover:border-l-4 hover:bg-white hover:font-semibold">
+                  <button
+                    type="submit"
+                    className="my-7 rounded-md border border-black px-5 py-2 text-black hover:-translate-y-1 hover:translate-x-1 hover:rounded-lg hover:border-b-4 hover:border-l-4 hover:bg-white hover:font-semibold"
+                  >
                     Generate Course
                   </button>
                 </form>
