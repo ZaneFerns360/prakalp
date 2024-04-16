@@ -12,6 +12,7 @@ import Form from "./Form";
 
 import { uid } from "../api/authsx";
 import { getCourses } from "../api/getAllCourses";
+import { Badge } from "@tremor/react";
 
 async function findData() {
   const session = await uid();
@@ -86,335 +87,49 @@ export default async function Page() {
         </div>
 
         <h2 className="pb-1 text-lg font-semibold text-gray-500">Products</h2>
-        {/* <div className="grid md:grid-cols-3 gap-3">
-          {data?.map((item) => (
-            <div
-              key={item.id}
-              className="relative my-2 w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
-            >
+
+        {courses.map((course) => (
+          <div
+            key={course.id}
+            className="group m-2 w-full max-w-sm rounded-lg bg-white pb-6 shadow"
+          >
+            <a href={`/course/${course.id}`}>
+              <h3 className="m-3 flex flex-col text-xl font-semibold tracking-tight text-gray-900">
+                {course.title}
+              </h3>
               <div>
-                <img
-                  className="mx-auto aspect-square h-auto rounded-t-lg p-1"
-                  src={item.picture}
-                  alt={item.name}
+                <iframe
+                  title="YouTube video player"
+                  src={`https://www.youtube.com/embed/${course?.chapters[0]?.topics[0]?.link}`}
+                  className="mb-3 h-full w-full rounded-lg p-1 group-hover:opacity-40"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
                 />
               </div>
-              <div className="absolute w-full bottom-1">
-              <div className="px-5 w-full">
-                <a href="#">
-                  <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                    {item.name}
-                  </h5>
-                </a>
-                <div className="mb-5 mt-1 flex items-center justify-between">
-                  <p className="text-3xl font-semibold text-gray-900">
-                  ₹{item.cost}
-                  </p>
-                  <Link
-                   href={`/user/${item.id}`} className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </Link>
+              {course.chapters.map((chapter) => (
+                <div className="my-1" key={chapter.id}>
+                  <div className="bottom-1 w-full">
+                    <div className="w-full px-5">
+                      <div className="">
+                        <Badge key={chapter.id} size="md" className="mx-1">
+                          {chapter.name}
+                        </Badge>
+                      </div>
+                      {/* {course.chapters.map((chapter) => {
+                      return (
+                        <Badge key={chapter.id} size="md" className="mx-1">
+                          {chapter.name}
+                        </Badge>
+                      );
+                    })} */}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              </div>
-            </div>
-          ))}
-        </div> */}
-
-        {data?.map((item) => (
-          <div
-            // key={item.id}
-            className="group relative w-full max-w-sm rounded-lg bg-white shadow "
-          >
-            <div>
-              <embed
-                className="h-full w-full rounded-lg p-1 group-hover:opacity-40"
-                // src={item.url}
-              />
-            </div>
-            <span className="absolute right-1 top-1 rounded-l-lg rounded-t-none bg-yellow-500 p-2 px-4 text-sm text-white">
-              {/* ₹{item.price} */}
-            </span>
-            <div className="bottom-1 w-full">
-              <div className="w-full px-5">
-                <div>
-                  {/* <h5 className="flex flex-col text-lg font-semibold tracking-tight group-hover:text-white text-gray-900">
-                      {item.name}
-                      <span className="text-sm">{item.desc}</span>
-                    </h5> */}
-                </div>
-                <div className="mb-5 mt-1 flex items-center justify-between">
-                  <h5 className="flex flex-col text-lg font-semibold tracking-tight text-gray-900">
-                    {/* {item.name} */}
-                    Hello
-                    {/* <span className="text-sm">{item.desc}</span> */}
-                  </h5>
-                  {/* <p className="text-3xl font-semibold group-hover:text-white text-gray-900">
-                      ₹{item.cost}
-                    </p> */}
-                  <Link
-                    // href={`/courses/${item.id}`}
-                    className="rounded-full bg-yellow-500 p-3"
-                  >
-                    <ArrowRight />
-                  </Link>
-                </div>
-              </div>
-            </div>
+              ))}
+            </a>
           </div>
         ))}
-
-        {/* <div className="my-7">
-          <h2 id="gallery" className="pb-4 text-lg font-semibold text-gray-500">
-            Latest Products
-          </h2>
-          <div className="mb-10 grid grid-cols-2 gap-4 md:grid-cols-4">
-            <div className="grid gap-4">
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
-            <div className="grid gap-4">
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
-            <div className="grid gap-4">
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
-            <div className="grid gap-4">
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-
-              <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
-                <a href="#">
-                  <img
-                    className="rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"
-                    alt="image description"
-                  />
-                </a>
-                <figcaption className="absolute bottom-4 hidden w-full px-4 text-lg text-white group-hover:block">
-                  <div className="flex items-center justify-between">
-                    <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-                      $599
-                    </span>
-                    <a href="#" className="rounded-full bg-yellow-500 p-3">
-                      <ShoppingCart />
-                    </a>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

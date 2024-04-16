@@ -11,8 +11,27 @@ import {
   Tracker,
 } from "@tremor/react";
 import { GalleryVerticalEnd, History, Search } from "lucide-react";
-
+import { getUserDetails } from "../api/userDetails";
+import { useEffect, useState } from "react";
 const Dashboard = () => {
+  type UserDetails = {
+    id: string;
+    name: string | null;
+  };
+
+  const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const details = await getUserDetails();
+      if (details?.name !== null) {
+        setUserDetails(details);
+      }
+    };
+
+    void fetchUserDetails();
+  }, []);
+
   const chartdata = [
     {
       month: "Jan 21",
@@ -71,10 +90,10 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="bg-[url(/Hero/bg.jpeg)] bg-opacity-40">
+      <div className="bg-opacity-40 bg-[url(/Hero/bg.jpeg)]">
         <main className="mx-auto max-w-7xl p-8 pt-20">
           <div className="flex items-center">
-            <h2 className="mr-2 text-3xl font-bold text-white tracking-tight">
+            <h2 className="mr-2 text-3xl font-bold tracking-tight text-white">
               Dashboard
             </h2>
           </div>
@@ -92,15 +111,25 @@ const Dashboard = () => {
               </div>
               <div className="mx-5 min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-900 ">
-                  Student Name
+                  {userDetails && (
+                    <>
+                      <h1>Welcome, {userDetails.name}</h1>{" "}
+                    </>
+                  )}
                 </p>
-                <p className="truncate text-sm text-gray-500">Student Id</p>
+                <p className="truncate text-sm text-gray-500">
+                  {userDetails && (
+                    <>
+                      <h1>User Id : {userDetails.id}</h1>{" "}
+                    </>
+                  )}
+                </p>
               </div>
               <div className="inline-flex items-center text-base font-semibold text-gray-900">
                 <div>
                   {/* Use the split values inside JSX */}
-                  <div>Standard</div>
-                  <div className="text-xs font-light">Age</div>
+                  <div>Standard : 6th </div>
+                  <div className="text-xs font-light">Age : 10</div>
                 </div>
               </div>
             </Card>
@@ -110,23 +139,23 @@ const Dashboard = () => {
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             <Card>
               <a href="/create-course">
-              <div className="flex justify-between gap-3 md:gap-10">
-                <div className="my-auto">
-                  <h1 className="text-lg font-bold md:text-xl">
-                    Course Generator
-                  </h1>
-                  <p className="md:text-md text-sm">
-                    Learn the best from whoever you want, whenever you want, at
-                    your own pace
-                  </p>
+                <div className="flex justify-between gap-3 md:gap-10">
+                  <div className="my-auto">
+                    <h1 className="text-lg font-bold md:text-xl">
+                      Course Generator
+                    </h1>
+                    <p className="md:text-md text-sm">
+                      Learn the best from whoever you want, whenever you want,
+                      at your own pace
+                    </p>
+                  </div>
+                  <Image
+                    src="/Eddie/eddieSmile.png"
+                    width={80}
+                    height={80}
+                    alt="Eddie"
+                  />
                 </div>
-                <Image
-                  src="/Eddie/eddieSmile.png"
-                  width={80}
-                  height={80}
-                  alt="Eddie"
-                />
-              </div>
               </a>
             </Card>
             <div className="grid grid-cols-2 gap-4">
@@ -143,13 +172,13 @@ const Dashboard = () => {
               </Card>
               <Card className="flex w-full flex-col items-center justify-center">
                 <a href="/course-explore">
-                <div className="flex w-full justify-between">
-                  <h1 className="text-lg font-bold md:text-xl">Explore</h1>
-                  <Search size={20} />
-                </div>
-                <p className="md:text-md text-sm">
-                  Check out all the courses you generated
-                </p>
+                  <div className="flex w-full justify-between">
+                    <h1 className="text-lg font-bold md:text-xl">Explore</h1>
+                    <Search size={20} />
+                  </div>
+                  <p className="md:text-md text-sm">
+                    Check out all the courses you generated
+                  </p>
                 </a>
               </Card>
             </div>
@@ -187,7 +216,7 @@ const Dashboard = () => {
               <div className="flex items-center space-x-2.5">
                 <div className="flex flex-col">
                   <p className="dark:text-dark-tremor-content-strong font-medium text-tremor-content-strong">
-                    Student Name
+                    Alvin Dsouza
                   </p>
                   <span className="dark:text-dark-tremor-content text-tremor-default text-tremor-content">
                     Today&apos;s Progress
@@ -344,7 +373,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Your Core Performance  */}
           <div className="my-5 text-white">
             <h4 className="mx-5"> Your Core Performance</h4>
