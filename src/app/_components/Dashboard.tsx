@@ -92,15 +92,15 @@ const Dashboard = () => {
               </div>
               <div className="mx-5 min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-900 ">
-                  Student Name
+                  Alvin Dsouza
                 </p>
-                <p className="truncate text-sm text-gray-500">Student Id</p>
+                <p className="truncate text-sm text-gray-500">s8jXcKlZIjR6dg3Dcb8SkrMwg7c2</p>
               </div>
               <div className="inline-flex items-center text-base font-semibold text-gray-900">
                 <div>
                   {/* Use the split values inside JSX */}
-                  <div>Standard</div>
-                  <div className="text-xs font-light">Age</div>
+                  <div>Standard : 6th </div>
+                  <div className="text-xs font-light">Age : 10</div>
                 </div>
               </div>
             </Card>
@@ -187,7 +187,7 @@ const Dashboard = () => {
               <div className="flex items-center space-x-2.5">
                 <div className="flex flex-col">
                   <p className="dark:text-dark-tremor-content-strong font-medium text-tremor-content-strong">
-                    Student Name
+                    Alvin Dsouza
                   </p>
                   <span className="dark:text-dark-tremor-content text-tremor-default text-tremor-content">
                     Today&apos;s Progress
