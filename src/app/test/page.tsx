@@ -43,6 +43,7 @@ async function create() {
   //   },
   // ];
 
+  // Course Generator
   const getCourse = async () => {
     const res = await axios.post(
       "https://thinklabs.azurewebsites.net/api/makecourse",
@@ -54,11 +55,23 @@ async function create() {
     return(res.data)
   };
 
+  // Quiz Generator
   const getQna = async () => {
     const res = await axios.post(
       "https://thinklabs.azurewebsites.net/api/makeqna",
       {
         topics: "just topics as string",
+      },
+    );
+  };
+
+  // Replace Video
+  const getnewvideo = async () => {
+    const res = await axios.post(
+      "https://thinklabs.azurewebsites.net/api/getnewvideo",
+      {
+        q: "search query of the video",
+        id: "id of the video",
       },
     );
   };
