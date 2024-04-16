@@ -50,6 +50,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   courses       Course[]
+  Quiz          Quiz[]
 }
 
 model VerificationToken {
@@ -85,4 +86,13 @@ model Topic {
   search_query    String
   knowledge_level Int
   chapter         Chapter @relation(fields: [chapterId], references: [id])
+}
+
+model Quiz {
+  id     String   @id @default(cuid())
+  name   String
+  score  Int
+  userId String
+  date   DateTime
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
