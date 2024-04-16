@@ -6,23 +6,15 @@ import Image from "next/image";
 const Form = () => {
   return (
     <div className="mt-1 bg-[url(/Hero/bg.jpeg)] py-12">
-      <div className="my-16 flex items-center justify-start py-16">
+      <div className="my-16 flex items-center justify-center py-16">
         <div className="grid gap-3 md:grid-cols-2">
-          <Image
-            src="/Eddie/eddieLove.png"
-            className="my-10 ml-16"
-            width={300}
-            height={300}
-            alt="Eddie"
-          />
-          
-          <Card>
+        <Card>
             <h1 className="text-2xl font-bold">Enter Your Details</h1>
             <p>This Information Helps Us Better Your Experience</p>
             <Divider/>
             <div className=" sm:mx-auto sm:max-w-2xl">
               <form action="#" method="post" className="mt-8">
-                <div className=" mb-4">
+                <div className=" mb-3">
                   <label
                     htmlFor="first-name"
                     className="dark:text-dark-tremor-content-strong text-tremor-default font-medium text-tremor-content-strong"
@@ -40,7 +32,7 @@ const Form = () => {
                     required
                   />
                 </div>
-                <div className="">
+                <div className="mb-3 ">
                   <label
                     htmlFor="first-name"
                     className="dark:text-dark-tremor-content-strong text-tremor-default font-medium text-tremor-content-strong"
@@ -58,7 +50,7 @@ const Form = () => {
                     required
                   />
                 </div>
-                <div className="">
+                <div className="mb-3">
                   <label
                     htmlFor="first-name"
                     className="dark:text-dark-tremor-content-strong text-tremor-default font-medium text-tremor-content-strong"
@@ -103,6 +95,14 @@ const Form = () => {
               </form>
             </div>
           </Card>
+          <Image
+            src="/Eddie/eddieLove.png"
+            className="my-10 ml-16"
+            width={300}
+            height={300}
+            alt="Eddie"
+          />
+          
         </div>
       </div>
     </div>
