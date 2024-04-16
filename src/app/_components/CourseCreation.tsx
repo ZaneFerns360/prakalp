@@ -96,7 +96,10 @@ const CourseCreation = () => {
                       required
                     />
                   </div>
-                  <button type="submit" className="my-7 rounded-md border border-black px-5 py-2 text-black hover:-translate-y-1 hover:translate-x-1 hover:rounded-lg hover:border-b-4 hover:border-l-4 hover:bg-white hover:font-semibold">
+                  <button
+                    type="submit"
+                    className="my-7 rounded-md border border-black px-5 py-2 text-black hover:-translate-y-1 hover:translate-x-1 hover:rounded-lg hover:border-b-4 hover:border-l-4 hover:bg-white hover:font-semibold"
+                  >
                     Generate Course
                   </button>
                 </form>

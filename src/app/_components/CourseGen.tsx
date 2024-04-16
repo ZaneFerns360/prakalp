@@ -41,7 +41,7 @@ const CourseGen = () => {
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
               >
-                <MonitorPlay/>
+                <MonitorPlay />
                 <span className="ms-3 flex-1 whitespace-nowrap text-left rtl:text-right">
                   Chapter Name
                 </span>
