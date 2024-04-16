@@ -1,32 +1,16 @@
+"use client";
 import { ChevronLeft, ChevronRight, MonitorPlay } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 const CourseGen = () => {
+  const [courseStat, setCourseStat] = useState(1);
+
+  const changeStat = (index: number) => {
+    setCourseStat(index);
+    console.log(courseStat);
+  };
   return (
     <div>
-      <button
-        data-drawer-target="sidebar-multi-level-sidebar"
-        data-drawer-toggle="sidebar-multi-level-sidebar"
-        aria-controls="sidebar-multi-level-sidebar"
-        type="button"
-        className="ms-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 sm:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      >
-        <span className="sr-only">Open sidebar</span>
-        <svg
-          className="h-6 w-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clip-rule="evenodd"
-            fill-rule="evenodd"
-            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-          ></path>
-        </svg>
-      </button>
-
       <aside
         id="sidebar-multi-level-sidebar"
         className="z-16 fixed left-0 top-16 h-screen w-64 -translate-x-full transition-transform sm:translate-x-0"
@@ -36,12 +20,13 @@ const CourseGen = () => {
           <ul className="space-y-2 font-medium">
             <li>
               <button
+                onClick={() => changeStat(1)}
                 type="button"
                 className="group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100"
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
               >
-                <MonitorPlay/>
+                <MonitorPlay />
                 <span className="ms-3 flex-1 whitespace-nowrap text-left rtl:text-right">
                   Chapter Name
                 </span>
@@ -61,42 +46,47 @@ const CourseGen = () => {
                   />
                 </svg>
               </button>
-              <ul id="dropdown-example" className="hidden space-y-2 py-2">
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name 2
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name 3
-                  </a>
-                </li>
-              </ul>
+              {courseStat == 1 ? (
+                <ul id="dropdown-example" className=" space-y-2 py-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name 2
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name 3
+                    </a>
+                  </li>
+                </ul>
+              ) : (
+                ""
+              )}
             </li>
 
-            {/* <li>
+            <li>
               <button
                 type="button"
+                onClick={() => changeStat(2)}
                 className="group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100"
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
               >
-                <MonitorPlay/>
+                <MonitorPlay />
                 <span className="ms-3 flex-1 whitespace-nowrap text-left rtl:text-right">
                   Chapter Name 2
                 </span>
@@ -116,42 +106,47 @@ const CourseGen = () => {
                   />
                 </svg>
               </button>
-              <ul id="dropdown-example" className="hidden space-y-2 py-2">
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name 2
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name 3
-                  </a>
-                </li>
-              </ul>
+              {courseStat == 2 ? (
+                <ul id="dropdown-example" className=" space-y-2 py-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name 2
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name 3
+                    </a>
+                  </li>
+                </ul>
+              ) : (
+                ""
+              )}
             </li>
 
             <li>
               <button
                 type="button"
+                onClick={() => changeStat(3)}
                 className="group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100"
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
               >
-                <MonitorPlay/>
+                <MonitorPlay />
                 <span className="ms-3 flex-1 whitespace-nowrap text-left rtl:text-right">
                   Chapter Name 3
                 </span>
@@ -171,42 +166,47 @@ const CourseGen = () => {
                   />
                 </svg>
               </button>
-              <ul id="dropdown-example" className="hidden space-y-2 py-2">
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name 2
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name 3
-                  </a>
-                </li>
-              </ul>
+              {courseStat == 3 ? (
+                <ul id="dropdown-example" className=" space-y-2 py-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name 2
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name 3
+                    </a>
+                  </li>
+                </ul>
+              ) : (
+                ""
+              )}
             </li>
 
             <li>
               <button
                 type="button"
+                onClick={() => changeStat(4)}
                 className="group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100"
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
               >
-                <MonitorPlay/>
+                <MonitorPlay />
                 <span className="ms-3 flex-1 whitespace-nowrap text-left rtl:text-right">
                   Chapter Name 4
                 </span>
@@ -226,33 +226,37 @@ const CourseGen = () => {
                   />
                 </svg>
               </button>
-              <ul id="dropdown-example" className="hidden space-y-2 py-2">
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name 2
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
-                  >
-                    Topic Name 3
-                  </a>
-                </li>
-              </ul>
-            </li> */}
+              {courseStat == 4 ? (
+                <ul id="dropdown-example" className=" space-y-2 py-2">
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name 2
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100"
+                    >
+                      Topic Name 3
+                    </a>
+                  </li>
+                </ul>
+              ) : (
+                ""
+              )}
+            </li>
           </ul>
         </div>
       </aside>
