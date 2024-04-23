@@ -2,7 +2,7 @@
 import { db } from "~/server/db";
 // import { type Course, type Chapter, type Topic, User } from "@prisma/client";
 
-type Topic = {
+export type Topic = {
   id: string;
   title: string;
   link: string;
@@ -18,7 +18,7 @@ type Chapter = {
   topics: Topic[];
 };
 
-type CourseDetails = {
+export type CourseDetails = {
   id: string;
   title: string;
   public: boolean;
