@@ -8,20 +8,32 @@ import Link from "next/link";
 import axios from "axios";
 import QuizType1 from "./QuizType1";
 
+type QnA = {
+  topic: string;
+  question: string;
+  options: string[];
+  answer: number;
+};
+
+type QData = {
+  qna: QnA[];
+};
+
 const QuizCreation = () => {
   const router = useRouter();
   const [topic, setTopic] = useState<string | undefined>(undefined);
-  const [qna, setQna] = useState();
+  const [qna, setQna] = useState<QData | undefined>();
 
   const getCourse = async () => {
-    const res = await axios.post(
+    const res = await axios.post<QData>(
       "https://thinklabs.azurewebsites.net/api/makeqna",
       {
         topics: topic,
       },
     );
-
-    setQna(res.data);
+    if (res) {
+      setQna(res.data);
+    }
   };
 
   return !qna ? (

@@ -14,6 +14,31 @@ import { changeLink } from "../api/changeLink";
 import { CourseDetails } from "../api/getOneCourse";
 import { Topic } from "../api/getOneCourse";
 
+type VideoId = {
+  kind: string;
+  videoId: string;
+};
+
+type Item = {
+  kind: string;
+  etag: string;
+  id: VideoId;
+};
+
+type PageInfo = {
+  totalResults: number;
+  resultsPerPage: number;
+};
+
+type youtubeData = {
+  kind: string;
+  etag: string;
+  nextPageToken: string;
+  regionCode: string;
+  pageInfo: PageInfo;
+  items: Item[];
+};
+
 const CourseGen = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const [courseStat, setCourseStat] = useState(1);
@@ -22,13 +47,13 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
   const [qtopic, setQtopic] = useState();
   const [changeStatus, setChangeStatus] = useState(0);
 
-  const ecd = (topic: any) => {
+  const ecd = (topic: never) => {
     const utf8String = encodeURIComponent(topic);
     const base64String = btoa(utf8String);
     return base64String;
   };
 
-  const move = (e: any) => {
+  const move = (e: Event) => {
     e.preventDefault();
     router.push(`/quiz/${ecd(qtopic)}`);
   };
@@ -36,11 +61,13 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
   useEffect(() => {
     const getData = async () => {
       const res: CourseDetails | null = await getOneCourse(params.id);
-      setCourseData(res);
+      if (res!) {
+        setCourseData(res);
+      }
       setCurrData(res?.chapters[0]?.topics[0]);
     };
 
-    getData();
+    void getData();
   }, [changeStatus]);
 
   const newLink = async () => {
@@ -52,14 +79,14 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
     //   },
     // );
 
-    const res = await axios.get(
+    const res = await axios.get<youtubeData>(
       `https://www.googleapis.com/youtube/v3/search?key=AIzaSyAjgYmQJXz2VQUUp4sL8slYm321d3GUTGI&q=${currData.search_query}&videoDuration=medium&videoEmbeddable=true&type=video&maxResults=5`,
     );
     const newLs = res.data;
 
-    newLs.items.forEach((element) => {
-      if (element.id.videoId != currData.link) {
-        changeLink(currData.id, element.id.videoId).then((e) => {
+    newLs.items.forEach((element: { id: { videoId: string } }) => {
+      if (currData && element.id.videoId != currData.link) {
+        void changeLink(currData.id, element.id.videoId).then((e) => {
           setChangeStatus(changeStatus + 1);
         });
         return;
@@ -67,7 +94,10 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
     });
   };
 
-  const changeStat = (index: number, data) => {
+  const changeStat = (
+    index: number,
+    data: React.SetStateAction<Topic | null | undefined>,
+  ) => {
     setCourseStat(index);
     setCurrData(data);
     console.log(courseStat);
@@ -84,7 +114,7 @@ const CourseGen = ({ params }: { params: { id: string } }) => {
             {courseData
               ? courseData.chapters.map((chap, i) => {
                   return (
-                    <li>
+                    <li key={chap.id}>
                       <button
                         onClick={() => changeStat(i + 1, chap.topics[0])}
                         type="button"

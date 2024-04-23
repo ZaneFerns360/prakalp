@@ -302,7 +302,7 @@ const Dashboard = () => {
                     </div>
                     <p className="py-2.5 text-sm font-normal text-gray-900 ">
                       Practice makes you Perfect, Come On!! Let&apos;s learn
-                      together <span className="font-bold">"Ribbit"!</span>
+                      together <span className="font-bold">Ribbit!</span>
                     </p>
                   </div>
 
