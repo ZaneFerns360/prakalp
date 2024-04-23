@@ -5,6 +5,7 @@ import { Card, Divider, TextInput, NumberInput } from "@tremor/react";
 import Image from "next/image";
 import { changeUserDetails } from "../api/changeUser";
 import { delay } from "framer-motion";
+import Navbar from "../_components/sign";
 
 function Page() {
   const [age, setAge] = useState("");
@@ -31,8 +32,9 @@ function Page() {
 
   return (
     <div>
-      <div className="grid gap-3 md:grid-cols-2">
-        <Card>
+      <Navbar/>
+      <div className="mt-20 grid gap-3 md:grid-cols-2">
+        <Card >
           <p>This Information Helps Us Better Your Experience</p>
           <Divider />
           <div className="sm:mx-auto sm:max-w-2xl">

@@ -87,7 +87,7 @@ export default async function Page() {
         </div>
 
         <h2 className="pb-1 text-lg font-semibold text-gray-500">Products</h2>
-
+        <div className="md:grid grid-cols-3 gap-3">
         {courses.map((course) => (
           <div
             key={course.id}
@@ -130,6 +130,8 @@ export default async function Page() {
             </a>
           </div>
         ))}
+        </div>
+
       </div>
     </div>
   );
